@@ -31,10 +31,6 @@ class process extends credentials{
     process(int cusid,StringBuffer cus,int stafid,StringBuffer staf,int docid,StringBuffer doc){
         super(101,cus,1001,staf,5001,doc);
     }
-    public void passlength(){
-        System.out.println(passwordPattern.isValidPattern("hello"));
-
-    }
     final void AllCredentials(){
         System.out.println("***********customer**************");
         System.out.println("customer id>>"+this.cust_id);
@@ -67,16 +63,22 @@ class process extends credentials{
             login.doctor=true;
             login.staff=false;
             login.patient=false;
+            System.out.println("Logged In");
         }
         else if(pat==true){
             login.doctor=false;
             login.staff=false;
             login.patient=true;
+            System.out.println("Logged In");
         }
         else if(staff==true){
             login.doctor=false;
             login.staff=true;
             login.patient=false;
+            System.out.println("Logged In");
+        }
+        else{
+            System.out.println("Invalid credentials");
         }
     }
 }
@@ -100,11 +102,16 @@ class patient extends process{
         this.cust_id = input.nextInt();
         System.out.println("Enter new password>>");
         String pass = input.next();
-        this.cuspass.setLength(0);
-        this.cuspass.append(pass);
-        System.out.println("updated credentials");
-        System.out.println("patient id>>"+this.cust_id);
-        System.out.println("patient pass>>"+this.cuspass);
+        if(super.isValidPattern(pass)){
+            this.cuspass.setLength(0);
+            this.cuspass.append(pass);
+            System.out.println("updated credentials");
+            System.out.println("patient id>>"+this.cust_id);
+            System.out.println("patient pass>>"+this.cuspass);
+        }
+        else{
+            System.out.println("password must be strong");
+        }
     }
 }
 
@@ -130,11 +137,16 @@ class staff extends patient{
         this.staff_id = input.nextInt();
         System.out.println("Enter new password>>");
         String pass = input.next();
-        this.staffpass.setLength(0);
-        this.staffpass.append(pass);
-        System.out.println("updated credentials");
-        System.out.println("Staff id id>>"+this.staff_id);
-        System.out.println("Staff pass>>"+this.staffpass);
+        if(super.isValidPattern(pass)){
+            this.staffpass.setLength(0);
+            this.staffpass.append(pass);
+            System.out.println("updated credentials");
+            System.out.println("Staff id id>>"+this.staff_id);
+            System.out.println("Staff pass>>"+this.staffpass);
+        }
+        else{
+            System.out.println("password must be strong");
+        }
     }
 }
 
@@ -157,14 +169,19 @@ class doctor extends staff{
         System.out.println("Doctor id>>"+this.doctor_id);
         System.out.println("Doctor pass>>"+this.docpass);
         System.out.println("Enter new id>>");
-        this.doctor_id = input.nextInt();
+        this.doctor_id=input.nextInt();
         System.out.println("Enter new password>>");
         String pass = input.next();
-        this.docpass.setLength(0);
-        this.docpass.append(pass);
-        System.out.println("updated credentials");
-        System.out.println("Doctor id>>"+this.doctor_id);
-        System.out.println("Doctor pass>>"+this.docpass);
+        if(super.isValidPattern(pass)){
+            this.docpass.setLength(0);
+            this.docpass.append(pass);
+            System.out.println("updated credentials");
+            System.out.println("Doctor id>>"+this.doctor_id);
+            System.out.println("Doctor pass>>"+this.docpass);
+        }
+        else{
+            System.out.println("password must be strong");
+        }
     }
 }
 

@@ -1,14 +1,8 @@
 package validator;
 import java.util.regex.*;
 import validate.*;
-public class passwordPattern implements check.idCheck,check.passCheck{
-    public void passlength(){
-
-    }
-    public void idlength(){
-
-    }
-    public static boolean isValidPattern(String password){
+public class passwordPattern implements check.passCheck{
+    public boolean isValidPattern(String password){
         String regex = "^(?=.*[0-9])"
                         + "(?=.*[a-z])(?=.*[A-Z])"
                         + "(?=.*[@#$%^&+=])"
